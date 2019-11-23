@@ -1,13 +1,16 @@
 #! /usr/bin/env sh
 
+wd=$(pwd)
 rm -rf tmp
 mkdir -p tmp mnt
 
 sudo mount -t iso9660 -o loop $1 $(pwd)/mnt
-tar cf - $(pwd)/mnt | (cd $(pwd)/tmp; tar xfp -)
+cd $wd/mnt
+tar cf - . | (cd $(pwd)/tmp; tar xfp -)
 
 wget -c $(pwd)/tmp/EFI/boot https://github.com/hirotakaster/baytail-bootia32.efi/raw/master/bootia32.efi
 
-mkisofs -o update-$1 -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -J -R -V "32Bit UEFI .iso" $(pwd)/tmp
+cd $wd/tmp
+mkisofs -o update-$1 -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -J -R -V "32Bit UEFI .iso"
 
 sudo umount $(pwd)/mnt
