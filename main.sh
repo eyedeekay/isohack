@@ -1,7 +1,7 @@
 #! /usr/bin/env sh
 
 wd=$(pwd)
-rm -rf tmp
+sudo rm -rf tmp mnt
 mkdir -p tmp mnt
 
 sudo mount -t iso9660 -o loop $1 $wd/mnt
