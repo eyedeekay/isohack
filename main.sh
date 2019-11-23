@@ -9,7 +9,7 @@ cd $wd/mnt
 tar cf - . | (cd $wd/tmp; tar xfp -)
 
 wget -c $wd/bootia32.efi https://github.com/hirotakaster/baytail-bootia32.efi/raw/master/bootia32.efi
-sudo cp $wd/bootia32.efi $wd/tmp/EFI/boot/bootia32.efi
+sudo cp $wd/bootia32.efi $wd/tmp/EFI/*/bootia32.efi
 
 cd $wd/tmp
 mkisofs -o update-$1 -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -J -R -V "32Bit UEFI .iso" .
