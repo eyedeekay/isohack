@@ -6,7 +6,7 @@ mkdir -p tmp mnt
 
 sudo mount -t iso9660 -o loop $1 $(pwd)/mnt
 cd $wd/mnt
-tar cf - . | (cd $(pwd)/tmp; tar xfp -)
+tar cf - . | (cd $wd/tmp; tar xfp -)
 
 wget -c $(pwd)/tmp/EFI/boot https://github.com/hirotakaster/baytail-bootia32.efi/raw/master/bootia32.efi
 
