@@ -8,10 +8,9 @@ mkdir -p tmp mnt
 sudo mount -t iso9660 -o loop $1 $wd/mnt
 cd $wd/mnt
 tar cf - . | (cd $wd/tmp; tar xfp -)
-sudo chmod -R a+w $wd/tmp
+sudo chmod -R a+w $wd/tmp/EFI/BOOT/
 
-wget -c $wd/tmp/EFI/BOOT/bootia32.efi https://github.com/hirotakaster/baytail-bootia32.efi/raw/master/bootia32.efi
-sudo cp $wd/bootia32.efi
+wget -c -O $wd/tmp/EFI/BOOT/bootia32.efi https://github.com/hirotakaster/baytail-bootia32.efi/raw/master/bootia32.efi
 
 cd $wd/tmp
 
