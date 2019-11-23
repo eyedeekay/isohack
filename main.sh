@@ -4,7 +4,7 @@ wd=$(pwd)
 rm -rf tmp
 mkdir -p tmp mnt
 
-sudo mount -t iso9660 -o loop $1 $(pwd)/mnt
+sudo mount -t iso9660 -o loop $1 $wd/mnt
 cd $wd/mnt
 tar cf - . | (cd $wd/tmp; tar xfp -)
 
